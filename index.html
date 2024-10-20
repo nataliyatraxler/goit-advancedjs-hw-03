@@ -1,40 +1,36 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/simplelightbox/2.1.3/simple-lightbox.min.css"
-    />
-    <script type="module" crossorigin src="/goit-advancedjs-hw-03/index.js"></script>
-    <link rel="modulepreload" crossorigin href="/goit-advancedjs-hw-03/assets/vendor-gf4A_djT.js">
-    <link rel="stylesheet" crossorigin href="/goit-advancedjs-hw-03/assets/vendor-DnveWo0P.css">
-    <link rel="stylesheet" crossorigin href="/goit-advancedjs-hw-03/assets/index-87dYDSwy.css">
-  </head>
 
-  <body>
-    <header class="header">
-      <div class="container">
-        
-      </div>
-    </header>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/simplelightbox/2.1.3/simple-lightbox.min.css" />
+  <script type="module" crossorigin src="/goit-advancedjs-hw-03/index.js"></script>
+  <link rel="modulepreload" crossorigin href="/goit-advancedjs-hw-03/assets/vendor-gf4A_djT.js">
+  <link rel="stylesheet" crossorigin href="/goit-advancedjs-hw-03/assets/vendor-DnveWo0P.css">
+  <link rel="stylesheet" crossorigin href="/goit-advancedjs-hw-03/assets/index-87dYDSwy.css">
+</head>
 
-    <main>
-      <div class="search-container">
+<body>
+  <header class="header">
+    <div class="container"></div>
+  </header>
+
+  <main>
+    <div class="search-container">
+      <form id="search-form"> <!-- Додано форму -->
         <input type="text" id="search-input" placeholder="Search images..." />
-        <button id="search-button">Search</button>
-      </div>
+        <button type="submit" id="search-button">Search</button> <!-- Кнопка типу submit -->
+      </form>
+    </div>
 
-      <div id="error-message" style="display: none" class="error">
-        Sorry, no images matching your search query. Please try again!
-      </div>
+    <div id="error-message" style="display: none" class="error">
+      Sorry, no images matching your search query. Please try again!
+    </div>
 
-      <div id="image-gallery" class="gallery"></div>
-      
-    </main>
+    <div id="image-gallery" class="gallery"></div>
+  </main>
 
-  
-  </body>
+</body>
+
 </html>
