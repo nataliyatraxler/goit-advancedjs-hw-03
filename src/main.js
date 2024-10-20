@@ -1,10 +1,10 @@
-import { fetchImages } from './js/pixabay-api.js'; // Імпорт функції для запиту
-import { displayImages, clearGallery } from './js/render-functions.js'; // Імпорт функцій для рендерингу та очищення галереї
-import iziToast from 'izitoast'; // Імпорт iziToast для повідомлень
-import 'izitoast/dist/css/iziToast.min.css'; // Підключення стилів iziToast
+import { fetchImages } from './js/pixabay-api.js'; // Import function for fetching images
+import { displayImages, clearGallery } from './js/render-functions.js'; // Import functions for rendering and clearing gallery
+import iziToast from 'izitoast'; // Import iziToast for notifications
+import 'izitoast/dist/css/iziToast.min.css'; // Import styles for iziToast
 import SimpleLightbox from 'simplelightbox';
 
-// Індикатор завантаження
+// Create a loading indicator
 const loader = document.createElement('div');
 loader.classList.add('loader');
 loader.innerHTML = '<div class="lds-dual-ring"></div>';
@@ -14,28 +14,32 @@ loader.style.display = 'none';
 document.addEventListener('DOMContentLoaded', function () {
   let lightbox;
 
-  document.getElementById('search-button').addEventListener('click', async function () {
+  // Handle the submit event instead of click
+  const form = document.querySelector('.search-container form');
+  form.addEventListener('submit', async function (event) {
+    event.preventDefault(); // Prevent the default form submission behavior
+
     const queryInput = document.getElementById('search-input');
-    const query = queryInput.value;
+    const query = queryInput.value.trim(); // Trim leading and trailing spaces
 
     if (query === '') {
       iziToast.error({
         title: 'Error',
-        message: 'Please enter a search query!',
+        message: 'Please enter a valid search query!',
       });
       return;
     }
 
-    clearGallery(); // Очищаємо галерею перед новим пошуком
-    loader.style.display = 'block'; // Показуємо індикатор завантаження
+    clearGallery(); // Clear the gallery before the new search
+    loader.style.display = 'block'; // Show the loading indicator
 
     try {
       const images = await fetchImages(query);
 
       if (images.length > 0) {
-        displayImages(images); // Відображаємо картинки
+        displayImages(images); // Display images
 
-        // Ініціалізуємо або оновлюємо SimpleLightbox
+        // Initialize or refresh SimpleLightbox
         if (lightbox) {
           lightbox.refresh();
         } else {
@@ -57,8 +61,8 @@ document.addEventListener('DOMContentLoaded', function () {
       });
       console.error('Error:', error);
     } finally {
-      loader.style.display = 'none'; // Приховуємо індикатор після завершення завантаження
-      queryInput.value = ''; // Очищаємо рядок пошуку
+      loader.style.display = 'none'; // Hide the loading indicator after completion
+      queryInput.value = ''; // Clear the search input field
     }
   });
 });
